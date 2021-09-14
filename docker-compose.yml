@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+
+  db:
+    build: 
+      context: ./db
+    image: eramba_db:local
+    container_name: Eramba_mariadb
+    env_file:
+      - db/database.env
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - eramba_db:/var/lib/mysql
+    expose:
+      - "3306"
+    networks:
+      eramba_net:
+    restart: always
+
+  web:
+    build: 
+      context: ./app
+      args:
+        - HTTPD_USER=www-data
+    image: eramba_web:local
+    container_name: Eramba
+    volumes: 
+      - ./app/certs:/certs
+      - ./app/default-ssl.conf:/etc/apache2/sites-enabled/default-ssl.conf
+      - ./app/database.php:/var/www/html/app/Config/database.php
+    ports:
+      - "80:8080"
+      - "443:8443"
+    depends_on:
+      - db
+    networks:
+      eramba_net:
+    restart: always
+
+volumes:
+  eramba_db:
+
+networks:
+  eramba_net:
+    name: ErambaNet
