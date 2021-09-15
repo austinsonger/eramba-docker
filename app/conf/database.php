@@ -71,7 +71,7 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => 'db',
 		'login' => 'iRLadawa',
 		'password' => 'Vq@z$a9QHt@',
 		'database' => 'eramba_v2',

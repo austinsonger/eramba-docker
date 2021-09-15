@@ -8,19 +8,9 @@ ARG ERAMBA_DIR=eramba_community
 
 WORKDIR /
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -yq install \
-        wkhtmltopdf \
-        libzip-dev \
-        libbz2-ocaml-dev \
-        libpng-dev \
-        libldap2-dev \
-        libicu-dev \
-        libfreetype6-dev \
-        libjpeg-dev && \
-    # Required PHP extensions
-    docker-php-ext-configure gd --with-freetype --with-jpeg && \
-    docker-php-ext-install -j$(nproc) zip bz2 gd exif ldap intl pdo_mysql
+# REQUIREMENTS
+COPY build.d/requirements.sh /build.d/
+RUN bash /build.d/requirements.sh
 
 RUN curl ${LATEST} -o latest.tgz && \
     tar -zxvf /latest.tgz -C /var/www/html/ && \
@@ -28,7 +18,7 @@ RUN curl ${LATEST} -o latest.tgz && \
     rm -r /var/www/html/${ERAMBA_DIR} /latest.tgz && \
     chown ${HTTPD_USER}:${HTTPD_USER} /var/www/html/* 
     
-    # Configure php.ini following the Eramba's requirements
+# CONFIGURE PHP.INI
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
     sed -i '/^;memory_limit /s/^;//' $PHP_INI_DIR/php.ini && \
     sed -i 's/^\(memory_limit\s*=\s*\).*$/\14096M/' $PHP_INI_DIR/php.ini && \
