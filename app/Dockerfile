@@ -19,6 +19,8 @@ RUN curl ${LATEST} -o latest.tgz && \
     chown ${HTTPD_USER}:${HTTPD_USER} /var/www/html/* 
     
 # CONFIGURE PHP.INI
+# COPY build.d/php.sh /build.d/
+# RUN bash /build.d/php.sh 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
     sed -i '/^;memory_limit /s/^;//' $PHP_INI_DIR/php.ini && \
     sed -i 's/^\(memory_limit\s*=\s*\).*$/\14096M/' $PHP_INI_DIR/php.ini && \
