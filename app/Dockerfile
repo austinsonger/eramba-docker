@@ -42,24 +42,15 @@ RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
     sed -i 's/^\(max_input_vars\s*=\s*\).*$/\13000/' $PHP_INI_DIR/php.ini && \
     sed -i '/^;max_input_time /s/^;//' $PHP_INI_DIR/php.ini && \
     sed -i 's/^\(max_input_time\s*=\s*\).*$/\1600/' $PHP_INI_DIR/php.ini && \
-    ln -s /usr/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf && \
-    # Enable Apache required mdoules
-    ln -sf /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/ && \
-    ln -sf /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled/ && \
-    ln -sf /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ && \
-    ln -sf /etc/apache2/mods-available/setenvif.conf /etc/apache2/mods-enabled/ && \
-    ln -sf /etc/apache2/mods-available/setenvif.load /etc/apache2/mods-enabled/ && \
-    ln -sf /etc/apache2/mods-available/mime.conf /etc/apache2/mods-enabled/ && \
-    ln -sf /etc/apache2/mods-available/mime.load /etc/apache2/mods-enabled/ && \
-    ln -sf /etc/apache2/mods-available/socache_shmcb.load /etc/apache2/mods-enabled/ && \
-    # Secure Apache
-    sed -i 's/^\(ServerTokens\s*\).*$/\1Prod/' /etc/apache2/conf-enabled/security.conf && \
-    sed -i 's/^\(ServerSignature\s*\).*$/\1Off/' /etc/apache2/conf-enabled/security.conf && \
-    sed -i 's/^\(TraceEnable\s*\).*$/\1Off/' /etc/apache2/conf-enabled/security.conf && \
-    sed -i 's/80/8080/g' /etc/apache2/ports.conf && \
-    sed -i 's/443/8443/g' /etc/apache2/ports.conf && \
-    rm /etc/apache2/sites-enabled/*
+    ln -s /usr/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 
+# ENABLE APACHE MODULES
+COPY build.d/apache.sh /build.d/
+RUN bash /build.d/apache.sh 
+
+# SECURE APACHE
+COPY build.d/secure.sh /build.d
+RUN bash build.d/secure.sh
 
 COPY conf/default-ssl.conf /etc/apache2/sites-enabled/
 COPY --chown=$HTTPD_USER:$HTTPD_USER conf/database.php /var/www/html/app/Config/

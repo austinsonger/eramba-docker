@@ -71,10 +71,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '',
-		'login' => '',
-		'password' => '',
-		'database' => '',
+		'host' => 'localhost',
+		'login' => 'iRLadawa',
+		'password' => 'Vq@z$a9QHt@',
+		'database' => 'eramba_v2',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
