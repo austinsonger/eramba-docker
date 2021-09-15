@@ -1,4 +1,5 @@
 #!/bin/bash
+set -Eeuo pipefail
 
 ln -sf /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/ && \
 ln -sf /etc/apache2/mods-available/ssl.conf /etc/apache2/mods-enabled/ && \
