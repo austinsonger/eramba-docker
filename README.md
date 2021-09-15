@@ -2,7 +2,27 @@
 
 1. Build images with `docker-compose build`
 2. Run services with `docker-compose up -d`
-3. At first run, wait until MariaDB would have initialized its db schema (it may take a while)
+
+### default-ssl.conf
+
+- This is currently using `localhost` self-generated certs.
+- You can generated your own self-generated certs
+
+------------------------------
+
+#####  Current - localhost
+
+```
+SSLCertificateFile	/certs/localhost.cert
+SSLCertificateKeyFile /certs/localhost.key
+```
+
+##### For domain - example.com
+```
+SSLCertificateFile	/certs/example.com.cert
+SSLCertificateKeyFile /certs/example.com.key
+```
+
 
 #### FOR CLEANUP
 
