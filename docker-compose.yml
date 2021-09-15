@@ -26,8 +26,8 @@ services:
     container_name: Eramba
     volumes: 
       - ./app/certs:/certs
-      - ./app/default-ssl.conf:/etc/apache2/sites-enabled/default-ssl.conf
-      - ./app/database.php:/var/www/html/app/Config/database.php
+      - ./app/conf/default-ssl.conf:/etc/apache2/sites-enabled/default-ssl.conf
+      - ./app/conf/database.php:/var/www/html/app/Config/database.php
     ports:
       - "80:8080"
       - "443:8443"
