@@ -1,4 +1,5 @@
 #!/bin/bash
+set -Eeuo pipefail
 
 sed -i 's/^\(ServerTokens\s*\).*$/\1Prod/' /etc/apache2/conf-enabled/security.conf && \
 sed -i 's/^\(ServerSignature\s*\).*$/\1Off/' /etc/apache2/conf-enabled/security.conf && \

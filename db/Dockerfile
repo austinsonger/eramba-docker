@@ -10,7 +10,7 @@ RUN sed -i '/^#sql_mode.* /s/.*/sql_mode=/' /etc/mysql/my.cnf && \
     apt update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq install curl &&\
     mkdir /tmp_src && \
-    curl -o eramba_latest.tgz ${LATEST} && \
-    tar zxvf /eramba_latest.tgz -C /tmp_src && \
+    curl -o latest.tgz ${LATEST} && \
+    tar zxvf /latest.tgz -C /tmp_src && \
     cp /tmp_src/${ERAMBA_DIR}/app/Config/db_schema/c*.sql /docker-entrypoint-initdb.d && \
-    rm -r /tmp_src /eramba_latest.tgz
+    rm -r /tmp_src /latest.tgz
