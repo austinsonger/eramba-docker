@@ -6,6 +6,8 @@
 
 
 
-docker rmi -f $(docker images -q)
+#### FOR CLEANUP
 
+```
 docker system prune -a
+```
