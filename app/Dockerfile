@@ -7,8 +7,6 @@ ARG ERAMBA_DIR=eramba_community
 
 WORKDIR /
 
-# COPY build.d/directory_struct.sh /build.d/
-# RUN bash /build.d/directory_struct.sh
 
 # REQUIREMENTS
 COPY build.d/requirements.sh /build.d/

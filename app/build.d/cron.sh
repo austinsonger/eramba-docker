@@ -5,12 +5,12 @@ CRON_DIR="/eramba_community/cron"
 
 # CP to data directory
 mkdir -p ${CRON_DIR}
-cp build.d/cron/*.sh ${CRON_DIR}/
+cp eramba_community/cron/*.sh ${CRON_DIR}/
 
 # Add timers to systemd services
-cp build.d/cron/*.timer /etc/systemd/system/
+cp eramba_community/cron/*.timer /etc/systemd/system/
 # Add services
-cp build.d/cron/*.service /etc/systemd/system/
+cp eramba_community/cron/*.service /etc/systemd/system/
 
 systemctl start eramba-hourly.timer
 systemctl start eramba-daily.timer
