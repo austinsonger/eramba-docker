@@ -29,8 +29,8 @@ COPY build.d/secure.sh /build.d
 RUN bash build.d/secure.sh
 
 # CRON
-# COPY build.d/cron.sh /build.d
-# RUN bash build.d/cron.sh
+COPY build.d/cron.sh /build.d
+RUN bash build.d/cron.sh
 
 COPY conf/default-ssl.conf /etc/apache2/sites-enabled/
 COPY --chown=$HTTPD_USER:$HTTPD_USER conf/database.php /var/www/html/app/Config/

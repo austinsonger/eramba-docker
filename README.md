@@ -9,7 +9,6 @@
 - You can generated your own self-generated certs
 
 ------------------------------
-
 #####  Current - localhost
 
 ```

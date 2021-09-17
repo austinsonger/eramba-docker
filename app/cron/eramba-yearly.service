@@ -3,7 +3,7 @@ Description=Eramaba yearly job runner
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/sh /data/eramba/cron/eramba_yearly.sh
+ExecStart=/usr/bin/sh /eramba_community/cron/eramba_yearly.sh
 
 [Install]
 WantedBy=multi-user.target
