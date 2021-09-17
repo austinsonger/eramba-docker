@@ -1,6 +1,9 @@
 FROM php:7.4-apache-buster
 
 LABEL maintainer="Austin Songer" mail="austin@songer.pro"
+LABEL org.opencontainers.image.title="Eramba GRC Tool" \
+      org.opencontainers.image.authors="Austin Songer <austin@formassembly.com>" \
+      org.opencontainers.image.description="Eramba is a tool that helps with compliance, risk management, control testing, exception management, etc."
 ARG HTTPD_USER=www-data
 ARG LATEST="https://downloadseramba.s3-eu-west-1.amazonaws.com/CommunityTGZ/latest.tgz"
 ARG ERAMBA_DIR=eramba_community
