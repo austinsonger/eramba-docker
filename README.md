@@ -1,4 +1,4 @@
-# Eramba
+![](https://miro.medium.com/max/710/0*rQpagILnBH4__4Fb.png)
 
 1. Build images with `docker-compose build`
 2. Run services with `docker-compose up -d`
