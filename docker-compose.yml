@@ -30,7 +30,6 @@ services:
     volumes:
       - ./app/certs:/certs
       - ./app/conf/default-ssl.conf:/etc/apache2/sites-enabled/default-ssl.conf
-#      - ./app/conf/database.php:/var/www/html/app/Config/database.php
     ports:
       - "80:8080"
       - "443:8443"
