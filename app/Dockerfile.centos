@@ -1,0 +1,24 @@
+ARG BASE_IMAGE="centos:7.6.1810"
+FROM ${BASE_IMAGE}
+
+# Install dependencies.
+RUN yum -y update && \
+    yum -y install systemd openssh-server openssh-clients libseccomp nfs-utils && \
+    yum clean all && \
+    find /lib/systemd/system/sysinit.target.wants/ -name "systemd-tmpfiles-setup.service" -delete && \
+    rm -f /lib/systemd/system/multi-user.target.wants/* && \
+    rm -f /etc/systemd/system/*.wants/* && \
+    rm -f /lib/systemd/system/local-fs.target.wants/* && \
+    rm -f /lib/systemd/system/sockets.target.wants/*udev* && \
+    rm -f /lib/systemd/system/sockets.target.wants/*initctl* && \
+    rm -f /lib/systemd/system/basic.target.wants/* && \
+    rm -f /lib/systemd/system/anaconda.target.wants/*
+
+ENV container docker
+STOPSIGNAL SIGRTMIN+3
+
+
+COPY [ "entrypoint", "/usr/local/bin/" ]
+
+
+ENTRYPOINT [ "/usr/local/bin/entrypoint", "/sbin/init" ]
