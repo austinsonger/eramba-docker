@@ -2,6 +2,7 @@
 
 1. Build images with `docker-compose build`
 2. Run services with `docker-compose up -d`
+3. Open Browser https://localhost/
 
 ### default-ssl.conf
 
