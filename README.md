@@ -9,6 +9,8 @@
 - This is currently using `localhost` self-generated certs.
 - You can generated your own self-generated certs
 
+
+<!--
 ------------------------------
 #####  Current - localhost
 
@@ -23,3 +25,4 @@ SSLCertificateKeyFile /certs/localhost.key
 ```
 docker system prune -a
 ```
+-->
