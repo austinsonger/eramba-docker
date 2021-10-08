@@ -1,6 +1,5 @@
 FROM php:7.4-apache-buster
 
-
 ARG HTTPD_USER=www-data
 ARG LATEST="https://downloadseramba.s3-eu-west-1.amazonaws.com/CommunityTGZ/latest.tgz"
 ARG ERAMBA_DIR=eramba_community
