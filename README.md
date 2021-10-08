@@ -16,12 +16,6 @@ SSLCertificateFile	/certs/localhost.cert
 SSLCertificateKeyFile /certs/localhost.key
 ```
 
-##### For domain - example.com
-```
-SSLCertificateFile	/certs/example.com.cert
-SSLCertificateKeyFile /certs/example.com.key
-```
-
 
 #### FOR CLEANUP
 
