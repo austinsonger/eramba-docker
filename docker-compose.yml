@@ -2,12 +2,15 @@ version: "3.7"
 services:
 
   db:
-    build: 
+    build:
       context: ./db
     image: eramba_db:local
     container_name: Eramba_mariadb
-    env_file:
-      - db/database.env
+    environment:
+      - MYSQL_DATABASE=eramba_v2
+      - MYSQL_USER=eramba
+      - MYSQL_PASSWORD=eramba
+      - MYSQL_ROOT_PASSWORD=root
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
       - eramba_db:/var/lib/mysql
@@ -18,16 +21,16 @@ services:
     restart: always
 
   web:
-    build: 
+    build:
       context: ./app
       args:
         - HTTPD_USER=www-data
     image: eramba_web:local
     container_name: Eramba
-    volumes: 
+    volumes:
       - ./app/certs:/certs
       - ./app/conf/default-ssl.conf:/etc/apache2/sites-enabled/default-ssl.conf
-      - ./app/conf/database.php:/var/www/html/app/Config/database.php
+#      - ./app/conf/database.php:/var/www/html/app/Config/database.php
     ports:
       - "80:8080"
       - "443:8443"
@@ -36,6 +39,11 @@ services:
     networks:
       eramba_net:
     restart: always
+    environment:
+      - MYSQL_DATABASE=eramba_v2
+      - MYSQL_USER=eramba
+      - MYSQL_PASSWORD=eramba
+      - MYSQL_HOST=db
 
 volumes:
   eramba_db:

@@ -14,3 +14,5 @@ RUN sed -i '/^#sql_mode.* /s/.*/sql_mode=/' /etc/mysql/my.cnf && \
     tar zxvf /latest.tgz -C /tmp_src && \
     cp /tmp_src/${ERAMBA_DIR}/app/Config/db_schema/c*.sql /docker-entrypoint-initdb.d && \
     rm -r /tmp_src /latest.tgz
+    
+ADD ./my.cnf /etc/mysql/conf.d/    

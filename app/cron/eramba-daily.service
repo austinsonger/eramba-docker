@@ -1,9 +1,8 @@
 [Unit]
-Description=Eramaba daily job runner
+Description=Run eramaba-daily.service every day
 
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/sh /eramba_community/cron/eramba_daily.sh
+[Timer]
+OnCalendar=*-*-* 00:30:00
 
 [Install]
 WantedBy=multi-user.target

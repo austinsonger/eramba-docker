@@ -1,9 +1,8 @@
 [Unit]
-Description=Eramaba hourly job runner
+Description=Run eramaba-hourly.service every hour
 
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/sh /eramba_community/cron/eramba_hourly.sh
+[Timer]
+OnCalendar=hourly
 
 [Install]
 WantedBy=multi-user.target

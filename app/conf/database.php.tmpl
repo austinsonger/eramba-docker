@@ -39,7 +39,7 @@
  *
  * prefix =>
  * Uses the given prefix for all the tables in this database. This setting can be overridden
- * on a per-table basis with the Model:: property.
+ * on a per-table basis with the Model::$tablePrefix property.
  *
  * schema =>
  * For Postgres/Sqlserver specifies which schema you would like to use the tables in.
@@ -68,13 +68,13 @@
  */
 class DATABASE_CONFIG {
 
-	public  = array(
+	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'db',
-		'login' => 'eramba',
-		'password' => '',
-		'database' => 'eramba_v2',
+		'host' => '${MYSQL_HOST}',
+		'login' => '${MYSQL_USER}',
+		'password' => '${MYSQL_PASS}',
+		'database' => '${MYSQL_DATABASE}',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
